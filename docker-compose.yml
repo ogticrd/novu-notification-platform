@@ -1,6 +1,12 @@
 version: '3.9'
 name: notificaciones
 services:
+  redis:
+    image: 'redis:alpine'
+    container_name: redis
+    restart: unless-stopped
+    logging:
+      driver: 'none'
   mongodb:
     image: mongo
     container_name: mongodb
@@ -124,3 +130,5 @@ services:
       REACT_APP_WS_URL: ${REACT_APP_WS_URL}
     ports:
       - 4200:4200
+volumes:
+  mongodb: ~
